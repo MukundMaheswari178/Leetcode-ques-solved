@@ -1,0 +1,31 @@
+633. Sum of Square Numbers     (help taken)
+
+ques-Given a non-negative integer c, decide whether there're two integers a and b such that a2 + b2 = c.
+
+soln-class Solution {
+public:
+    bool judgeSquareSum(int c) {
+       long long  int l=0;
+        long long int h=sqrt(c);
+        
+        if(c>INT_MAX || c<INT_MIN){
+            return false;
+        }
+        if(c==0 || c==1){
+            return true;
+        }
+        while(l<=h){
+           long long  int ans=((l*l)+(h*h));
+            if(ans==c){
+                return true;
+            }
+            else if(ans>c){
+                h--;
+            }
+            else{
+                l++;
+            }
+        }
+        return false;
+    }
+};
