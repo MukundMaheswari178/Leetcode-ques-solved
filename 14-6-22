@@ -49,3 +49,62 @@ public:
         return addDigits(sum);
     }
 };
+
+
+1945. Sum of Digits of String After Convert
+
+You are given a string s consisting of lowercase English letters, and an integer k.
+
+First, convert s into an integer by replacing each letter with its position in the alphabet (i.e., replace 'a' with 1, 'b' with 2, ..., 'z' with 26). Then, transform the integer by replacing it with the sum of its digits. Repeat the transform operation k times in total.
+
+For example, if s = "zbax" and k = 2, then the resulting integer would be 8 by the following operations:
+
+Convert: "zbax" ➝ "(26)(2)(1)(24)" ➝ "262124" ➝ 262124
+Transform #1: 262124 ➝ 2 + 6 + 2 + 1 + 2 + 4 ➝ 17
+Transform #2: 17 ➝ 1 + 7 ➝ 8
+
+ans--class Solution {
+public:
+    int getLucky(string s, int k) {
+       long long  int ans=0;
+        vector<int> arr;
+       
+        
+      for(int i=0;i<s.size();i++){
+          int m=int(s[i]);
+          arr.push_back(m-96);
+          
+      }
+        for(int i=0;i<arr.size();i++){
+            while(arr[i]>0){
+                int rem=arr[i]%10;
+            ans=ans+rem;
+                arr[i]=arr[i]/10;
+        }}
+        cout<<ans;
+       int sum=0;
+        if(k==1){
+            return ans;
+        }
+        else{
+        
+   for(int i=1;i<k;){
+       cout<<ans<<endl;
+       while(ans!=0){
+           int rem=ans%10;
+           sum=sum+rem;
+           ans=ans/10;
+       }
+       cout<<sum<<endl;
+      
+       i++;
+       if(i<k){
+           ans=sum;
+           sum=0;
+       }
+       
+   }
+   }
+        return sum;
+    }
+};
