@@ -1,0 +1,107 @@
+2089. Find Target Indices After Sorting Array
+
+You are given a 0-indexed integer array nums and a target element target.
+
+A target index is an index i such that nums[i] == target.
+
+Return a list of the target indices of nums after sorting nums in non-decreasing order. If there are no target indices, return an empty list. The returned list must be sorted in increasing order.
+
+ soln--class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        vector<int> arr;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==target){
+                arr.push_back(i);
+            }
+        }
+        return arr;
+    }
+};
+
+35. Search Insert Position
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+soln--class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int n=nums.size();
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==target){
+                return i;
+            }
+        }
+        
+        for(int i=0;i<nums.size();i++){
+           if(target>nums[i]){
+               continue;
+           }
+            else if(target<=nums[i]){
+                return i;
+            }
+        }
+        if(target>nums[n-1]){
+            return n;
+        }
+        return n;
+    }
+};
+
+34. Find First and Last Position of Element in Sorted Array
+Medium
+
+11104
+
+301
+
+Add to List
+
+Share
+Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+You must write an algorithm with O(log n) runtime complexity.
+
+soln--class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> arr;
+        vector<int> arr2;
+        int count=0;
+        int n=nums.size();
+        
+        if(n==1 && target==nums[0]){
+            arr.push_back(0);
+            arr.push_back(0);
+            return arr;
+        }
+        for(int i=0;i<n;i++){
+            if(nums[i]==target){
+                arr.push_back(i);
+                count++;
+            }
+        }
+        
+        if(count==0){
+            arr.push_back(-1);
+            arr.push_back(-1);
+            return arr;
+        }
+        sort(arr.begin(),arr.end());
+        int k=arr[0];
+        arr2.push_back(k);
+        
+        int c=arr.size()-1;
+        arr2.push_back(arr[c]);
+        
+        return arr2;
+        
+        }
+            
+        
+    
+};
